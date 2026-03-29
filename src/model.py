@@ -1,0 +1,1 @@
+print("Digital Addiction Analyzer Project Started")
