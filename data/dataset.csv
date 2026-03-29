@@ -1,2 +1,11 @@
-user_id,screen_time_hours,social_media_hours,gaming_hours,study_hours,sleep_hours
-1,6,3,1,2,7
+screen_time,social_media_hours,sleep_hours,study_hours,addiction_level
+8,4,5,2,High
+7,3,6,3,High
+6,3,6,4,Medium
+5,2,7,5,Medium
+4,1,8,6,Low
+3,1,8,7,Low
+9,5,4,1,High
+2,0.5,8,8,Low
+6,2,6,3,Medium
+7,4,5,2,High
