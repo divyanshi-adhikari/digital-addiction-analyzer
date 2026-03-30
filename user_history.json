@@ -1,0 +1,26 @@
+[
+  {
+    "date": "2026-03-30 16:12",
+    "screen_time": 5.0,
+    "social_media": 2.0,
+    "gaming_hours": 1.0,
+    "sleep": 7.0,
+    "study": 4.0,
+    "physical_activity": 1.0,
+    "family_time": 2.0,
+    "score": 30.0,
+    "risk": "LOW"
+  },
+  {
+    "date": "2026-03-30 16:12",
+    "screen_time": 7.26,
+    "social_media": 1.53,
+    "gaming_hours": 2.61,
+    "sleep": 5.58,
+    "study": 3.06,
+    "physical_activity": 1.0,
+    "family_time": 2.0,
+    "score": 70.68999999999998,
+    "risk": "HIGH"
+  }
+]

@@ -3,7 +3,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import os
 import sys
-from datetime import datetime
+import json
+import datetime
 
 # Add parent directory to path to import model
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
@@ -15,6 +16,54 @@ st.set_page_config(
     page_icon=":brain:",
     layout="wide"
 )
+
+# History tracking functions
+HISTORY_FILE = 'user_history.json'
+
+def save_to_history(screen_time, social_media, gaming_hours, sleep, study, physical_activity, family_time, score, risk_level):
+    """Save user's analysis to history"""
+    try:
+        # Load existing history
+        if os.path.exists(HISTORY_FILE):
+            with open(HISTORY_FILE, 'r') as f:
+                history = json.load(f)
+        else:
+            history = []
+        
+        # Add new record
+        record = {
+            'date': datetime.datetime.now().strftime("%Y-%m-%d %H:%M"),
+            'screen_time': screen_time,
+            'social_media': social_media,
+            'gaming_hours': gaming_hours,
+            'sleep': sleep,
+            'study': study,
+            'physical_activity': physical_activity,
+            'family_time': family_time,
+            'score': score,
+            'risk': risk_level
+        }
+        history.append(record)
+        
+        # Keep only last 10 records
+        history = history[-10:]
+        
+        # Save back
+        with open(HISTORY_FILE, 'w') as f:
+            json.dump(history, f, indent=2)
+            
+    except Exception as e:
+        pass
+
+def load_history():
+    """Load user history"""
+    try:
+        if os.path.exists(HISTORY_FILE):
+            with open(HISTORY_FILE, 'r') as f:
+                return json.load(f)
+    except:
+        pass
+    return []
 
 st.title("MindTrack AI - Digital Addiction Analyzer")
 st.markdown("---")
@@ -226,6 +275,10 @@ if st.button("Analyze My Digital Health", type="primary"):
     
     score = calculate_score(screen_time, social_media, sleep, study, gaming_hours, physical_activity, family_time)
     risk_level, risk_color, risk_message = get_risk_level(score)
+    
+    # Save to history
+    save_to_history(screen_time, social_media, gaming_hours, sleep, study, physical_activity, family_time, score, risk_level)
+    
     insights = get_detailed_insights(screen_time, social_media, sleep, study, gaming_hours, physical_activity, family_time, score)
     
     # Display results
@@ -290,12 +343,11 @@ if st.button("Analyze My Digital Health", type="primary"):
         else:
             st.markdown(f"**{suggestion}**" if suggestion in ["URGENT INTERVENTION NEEDED", "MODERATE RISK - ACTION RECOMMENDED", "HEALTHY ZONE - MAINTAIN AND IMPROVE", "ACTIONABLE TIPS:", "7-DAY CHALLENGE:"] else suggestion)
     
-    # Graph - REDUCED SIZE
+    # Graph
     st.markdown("---")
     st.subheader("Daily Habit Analysis")
     
-    # Create smaller graph
-    fig, ax = plt.subplots(figsize=(8, 4))  # Reduced from (10,6) to (8,4)
+    fig, ax = plt.subplots(figsize=(8, 4))
     labels = ['Screen', 'Social', 'Gaming', 'Sleep', 'Study', 'Exercise', 'Family']
     values = [screen_time, social_media, gaming_hours, sleep, study, physical_activity, family_time]
     colors = ['#ff6b6b', '#ff8c42', '#f9c74f', '#90be6d', '#577590', '#4c9f70', '#9c89b8']
@@ -354,6 +406,42 @@ if st.button("Analyze My Digital Health", type="primary"):
             st.write(f"- Increase study by {improvement_needed/9:.1f} hours")
             st.write(f"- Improve sleep by {improvement_needed/6:.1f} hours")
     
+    # History Section (NEW)
+    st.markdown("---")
+    st.subheader("Your Progress History")
+    
+    history = load_history()
+    
+    if history:
+        # Show last 5 entries
+        st.write("**Last 5 analyses:**")
+        
+        # Create simple table
+        history_data = []
+        for record in history[-5:]:
+            history_data.append({
+                'Date': record['date'],
+                'Score': f"{record['score']:.0f}",
+                'Risk': record['risk'],
+                'Screen': f"{record['screen_time']}h",
+                'Study': f"{record['study']}h"
+            })
+        
+        st.dataframe(pd.DataFrame(history_data), use_container_width=True)
+        
+        # Show trend
+        if len(history) >= 2:
+            old_score = history[0]['score']
+            new_score = history[-1]['score']
+            if new_score < old_score:
+                st.success(f"Great! Your score improved by {old_score - new_score:.0f} points!")
+            elif new_score > old_score:
+                st.warning(f"Your score increased by {new_score - old_score:.0f} points. Time to review habits!")
+            else:
+                st.info("Your score is stable. Keep going!")
+    else:
+        st.info("Your history will appear here after multiple analyses. Track your progress over time!")
+    
     st.markdown("---")
     st.caption("Note: Consistency beats intensity. Small daily improvements lead to lasting change.")
 
@@ -380,7 +468,7 @@ else:
         st.write("- Habit Visualization")
     
     st.subheader("Sample Preview")
-    sample_fig, sample_ax = plt.subplots(figsize=(8, 4))  # Reduced size for preview
+    sample_fig, sample_ax = plt.subplots(figsize=(8, 4))
     sample_labels = ['Screen', 'Social', 'Sleep', 'Study']
     sample_values = [6, 3, 6, 4]
     sample_ax.bar(sample_labels, sample_values, color=['#ff6b6b', '#ff8c42', '#90be6d', '#577590'])
