@@ -25,4 +25,22 @@ def predict_addiction(input_data):
     
     return model.predict(input_df)[0]
 
+# Add score and risk
+def calculate_score(screen_time, social_media, sleep, study):
+    score = (screen_time*10 + social_media*10) - (sleep*5 + study*5)
+    return max(0, min(100, score))
+
+score = calculate_score(screen_time, social_media, sleep, study)
+
+print(f"Addiction Score: {score}/100")
+
+if score > 70:
+    risk = "HIGH "
+elif score > 40:
+    risk = "MEDIUM"
+else:
+    risk = "LOW "
+
+print("Risk Level:", risk)
+
     
