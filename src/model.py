@@ -80,3 +80,6 @@ elif score > 40:
 else:
     print("- Maintain your healthy habits")
 
+# LIFESTYLE RATING
+rating = 10 - (score / 10)
+print(f"\nLifestyle Rating: {round(rating,1)}/10")
