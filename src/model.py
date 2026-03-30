@@ -68,3 +68,15 @@ if study < 3:
     print("- Low study time")
 
 print(f"\nYour addiction score is {score}/100.")
+
+# SUGGESTION
+print("\nSuggestions:")
+
+if score > 70:
+    print("- Reduce screen time by 2-3 hours")
+    print("- Avoid phone before sleep")
+elif score > 40:
+    print("- Balance study and phone usage")
+else:
+    print("- Maintain your healthy habits")
+
