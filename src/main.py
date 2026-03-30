@@ -65,7 +65,7 @@ def load_history():
         pass
     return []
 
-st.title("MindTrack AI - Digital Addiction Analyzer")
+st.title("ScreenSense - Digital Wellness Tracker")
 st.markdown("---")
 
 # Input section

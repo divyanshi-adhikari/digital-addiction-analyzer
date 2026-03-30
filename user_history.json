@@ -22,5 +22,29 @@
     "family_time": 2.0,
     "score": 70.68999999999998,
     "risk": "HIGH"
+  },
+  {
+    "date": "2026-03-30 20:13",
+    "screen_time": 5.0,
+    "social_media": 2.0,
+    "gaming_hours": 1.0,
+    "sleep": 7.0,
+    "study": 4.0,
+    "physical_activity": 1.0,
+    "family_time": 2.0,
+    "score": 30.0,
+    "risk": "LOW"
+  },
+  {
+    "date": "2026-03-30 20:14",
+    "screen_time": 9.97,
+    "social_media": 4.31,
+    "gaming_hours": 0.64,
+    "sleep": 6.43,
+    "study": 0.75,
+    "physical_activity": 0.3,
+    "family_time": 3.63,
+    "score": 100,
+    "risk": "HIGH"
   }
 ]
