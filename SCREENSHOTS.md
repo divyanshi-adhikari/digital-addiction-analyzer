@@ -3,7 +3,7 @@
 ## 1. Main Interface
 The main dashboard where users input their daily habits.
 
-![Main Interface](images/main-inference.jpeg)
+![Main Interface](images/main-interface.jpeg)
 
 ---
 
