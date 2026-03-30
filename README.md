@@ -107,20 +107,31 @@ streamlit run src/main.py
 Navigate to http://localhost:8501
 
 ##  Project Structure
+
+```
 screen-sense-ai/
 │
 ├── src/
-│   ├── main.py              # Streamlit application
+│   ├── main.py              # Streamlit application (UI + scoring + insights)
 │   └── model.py             # ML model training & prediction
 │
 ├── data/
-│   └── dataset.csv          # Training data (20+ examples)
+│   └── dataset.csv          # Training data (Low/Medium/High)
 │
 ├── images/                  # Screenshots for documentation
+│   ├── main-interface.jpeg
+│   ├── analysis-result-1.jpeg
+│   ├── analysis-result-2.jpeg
+│   ├── analysis-result-3.jpeg
+│   ├── analysis-result-4.jpeg
+│   ├── visualization.jpeg
+│   └── history-tracking.jpeg
 │
-├── requirements.txt         # Python dependencies
-├── README.md               # This file
-└── user_history.json       # Auto-generated (local history)
+├── requirements.txt        # Python dependencies
+├── README.md               # Project documentation
+├── SCREENSHOTS.md          # Complete screenshots gallery
+└── user_history.json       # Auto-generated (local history tracking)
+```
 
 ##  Author
 

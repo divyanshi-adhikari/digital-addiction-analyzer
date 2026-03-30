@@ -46,5 +46,53 @@
     "family_time": 3.63,
     "score": 100,
     "risk": "HIGH"
+  },
+  {
+    "date": "2026-03-30 21:27",
+    "screen_time": 5.0,
+    "social_media": 2.0,
+    "gaming_hours": 1.0,
+    "sleep": 7.0,
+    "study": 4.0,
+    "physical_activity": 1.0,
+    "family_time": 2.0,
+    "score": 30.0,
+    "risk": "LOW"
+  },
+  {
+    "date": "2026-03-30 21:32",
+    "screen_time": 10.34,
+    "social_media": 4.46,
+    "gaming_hours": 1.92,
+    "sleep": 3.63,
+    "study": 0.71,
+    "physical_activity": 0.59,
+    "family_time": 0.88,
+    "score": 100,
+    "risk": "HIGH"
+  },
+  {
+    "date": "2026-03-30 21:32",
+    "screen_time": 7.79,
+    "social_media": 3.17,
+    "gaming_hours": 1.52,
+    "sleep": 3.63,
+    "study": 0.71,
+    "physical_activity": 0.59,
+    "family_time": 0.88,
+    "score": 100,
+    "risk": "HIGH"
+  },
+  {
+    "date": "2026-03-30 21:43",
+    "screen_time": 6.67,
+    "social_media": 2.47,
+    "gaming_hours": 1.48,
+    "sleep": 7.0,
+    "study": 2.54,
+    "physical_activity": 1.0,
+    "family_time": 1.03,
+    "score": 46.71000000000001,
+    "risk": "MEDIUM"
   }
 ]
