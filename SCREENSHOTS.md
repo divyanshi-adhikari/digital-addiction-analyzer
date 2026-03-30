@@ -10,28 +10,28 @@ The main dashboard where users input their daily habits.
 ## 2. Analysis Result - Score & Risk Level
 Addiction score (0-100), risk level, and lifestyle rating.
 
-![Analysis Result 1](images/analysis-result-1.jpeg)
+![Analysis Result 1](images/analysis-results-1.jpeg)
 
 ---
 
 ## 3. Analysis Result - Issues/ What are you doing well/ Quick tips
 It tells about the issue if risk level high and also tell us about what are you doing well and quick tips to improve.
 
-![Analysis Result 2](images/analysis-result-2.jpeg)
+![Analysis Result 2](images/analysis-results-2.jpeg)
 
 ---
 
 ## 4. Analysis Result - Personalized Suggestions
 Actionable recommendations and give personalized suggestions.
 
-![Analysis Result 3](images/analysis-result-3.jpeg)
+![Analysis Result 3](images/analysis-results-3.jpeg)
 
 ---
 
 ## 5. Analysis Result - AI model prediction
 It give the current score and target score and give predictions about it and also give us ideas to reach the target goal.
 
-![Analysis Result 4](images/analysis-result-4.jpeg)
+![Analysis Result 4](images/analysis-results-4.jpeg)
 
 ---
 
