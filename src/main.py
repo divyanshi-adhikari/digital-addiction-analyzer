@@ -12,7 +12,7 @@ from src.model import predict_addiction
 
 # Page configuration
 st.set_page_config(
-    page_title="MindTrack AI",
+    page_title="ScreenSense",
     page_icon=":brain:",
     layout="wide"
 )
@@ -93,16 +93,19 @@ with col2:
 
 st.markdown("---")
 
+# UPDATED: Scoring formula with adjusted weights for better distribution
 def calculate_score(screen_time, social_media, sleep, study, gaming_hours, physical_activity, family_time):
-    negative_score = (screen_time * 8) + (social_media * 12) + (gaming_hours * 7)
-    positive_score = (sleep * 6) + (study * 9) + (physical_activity * 5) + (family_time * 4)
-    score = negative_score - positive_score + 50
+    # Adjusted weights to get better distribution across Low/Medium/High
+    negative_score = (screen_time * 6) + (social_media * 8) + (gaming_hours * 5)
+    positive_score = (sleep * 7) + (study * 8) + (physical_activity * 6) + (family_time * 5)
+    score = negative_score - positive_score + 60
     return max(0, min(100, score))
 
+# UPDATED: Risk level thresholds for better Medium range
 def get_risk_level(score):
-    if score >= 65:
+    if score >= 55:
         return "HIGH", "red", "Severe digital dependency detected. Immediate action required."
-    elif score >= 35:
+    elif score >= 30:
         return "MEDIUM", "orange", "Unhealthy patterns developing. Time to make changes."
     else:
         return "LOW", "green", "Healthy digital habits. Keep maintaining this balance."
@@ -197,8 +200,8 @@ def get_detailed_insights(screen_time, social_media, sleep, study, gaming_hours,
 def get_comprehensive_suggestions(score, screen_time, social_media, sleep, study, gaming_hours, physical_activity, family_time):
     suggestions = []
     
-    # Score-based tiered suggestions
-    if score >= 65:
+    # UPDATED: Score-based tiered suggestions with new thresholds
+    if score >= 55:
         suggestions.append("URGENT INTERVENTION NEEDED")
         suggestions.append("-" * 30)
         suggestions.append("Reduce screen time by 3-4 hours immediately")
@@ -207,7 +210,7 @@ def get_comprehensive_suggestions(score, screen_time, social_media, sleep, study
         suggestions.append("Mandatory 4 hours of focused study or work daily")
         suggestions.append("Replace 1 hour of screen time with exercise")
         suggestions.append("Have all meals without phones or devices")
-    elif score >= 35:
+    elif score >= 30:
         suggestions.append("MODERATE RISK - ACTION RECOMMENDED")
         suggestions.append("-" * 30)
         suggestions.append("Reduce screen time by 1-2 hours gradually")
@@ -379,19 +382,19 @@ if st.button("Analyze My Digital Health", type="primary"):
     except Exception as e:
         pass
     
-    # Improvement Tracker
+    # UPDATED: Improvement Tracker with new thresholds
     st.markdown("---")
     st.subheader("30-Day Improvement Tracker")
     
-    if score > 65:
-        target = "Reduce score below 65"
-        target_score = 65
-    elif score > 35:
-        target = "Reduce score below 35"
-        target_score = 35
+    if score > 55:
+        target = "Reduce score below 55"
+        target_score = 55
+    elif score > 30:
+        target = "Reduce score below 30"
+        target_score = 30
     else:
-        target = "Maintain below 35"
-        target_score = 35
+        target = "Maintain below 30"
+        target_score = 30
     
     improvement_needed = max(0, score - target_score)
     col1, col2 = st.columns(2)
@@ -402,21 +405,19 @@ if st.button("Analyze My Digital Health", type="primary"):
     with col2:
         if improvement_needed > 0:
             st.write("**To reach your target:**")
-            st.write(f"- Reduce screen time by {improvement_needed/8:.1f} hours")
-            st.write(f"- Increase study by {improvement_needed/9:.1f} hours")
-            st.write(f"- Improve sleep by {improvement_needed/6:.1f} hours")
+            st.write(f"- Reduce screen time by {improvement_needed/6:.1f} hours")
+            st.write(f"- Increase study by {improvement_needed/8:.1f} hours")
+            st.write(f"- Improve sleep by {improvement_needed/7:.1f} hours")
     
-    # History Section (NEW)
+    # History Section
     st.markdown("---")
     st.subheader("Your Progress History")
     
     history = load_history()
     
     if history:
-        # Show last 5 entries
         st.write("**Last 5 analyses:**")
         
-        # Create simple table
         history_data = []
         for record in history[-5:]:
             history_data.append({
@@ -429,7 +430,6 @@ if st.button("Analyze My Digital Health", type="primary"):
         
         st.dataframe(pd.DataFrame(history_data), use_container_width=True)
         
-        # Show trend
         if len(history) >= 2:
             old_score = history[0]['score']
             new_score = history[-1]['score']
