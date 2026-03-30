@@ -25,6 +25,16 @@ def predict_addiction(input_data):
     
     return model.predict(input_df)[0]
 
+import streamlit as st
+
+st.title("MindTrack AI - Digital Addiction Analyzer")
+
+screen_time = st.slider("Screen Time", 0.0, 12.0, 5.0)
+social_media = st.slider("Social Media Hours", 0.0, 8.0, 2.0)
+sleep = st.slider("Sleep Hours", 0.0, 10.0, 7.0)
+study = st.slider("Study Hours", 0.0, 10.0, 4.0)
+
+
 # Add score and risk
 def calculate_score(screen_time, social_media, sleep, study):
     score = (screen_time*10 + social_media*10) - (sleep*5 + study*5)
