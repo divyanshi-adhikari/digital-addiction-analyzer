@@ -1,6 +1,7 @@
 import pandas as pd
 from sklearn.tree import DecisionTreeClassifier
 import os
+import matplotlib.pyplot as plt
 
 # Load dataset using correct path
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
@@ -83,3 +84,12 @@ else:
 # LIFESTYLE RATING
 rating = 10 - (score / 10)
 print(f"\nLifestyle Rating: {round(rating,1)}/10")
+
+# GRAPH
+labels = ['Screen', 'Social', 'Sleep', 'Study']
+values = [screen_time, social_media, sleep, study]
+
+plt.bar(labels, values)
+plt.title("Daily Habit Analysis")
+plt.ylabel("Hours")
+plt.show()
