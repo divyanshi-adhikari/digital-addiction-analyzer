@@ -120,10 +120,10 @@ screen-sense-ai/
 │
 ├── images/                  # Screenshots for documentation
 │   ├── main-interface.jpeg
-│   ├── analysis-result-1.jpeg
-│   ├── analysis-result-2.jpeg
-│   ├── analysis-result-3.jpeg
-│   ├── analysis-result-4.jpeg
+│   ├── analysis-results-1.jpeg
+│   ├── analysis-results-2.jpeg
+│   ├── analysis-results-3.jpeg
+│   ├── analysis-results-4.jpeg
 │   ├── visualization.jpeg
 │   └── history-tracking.jpeg
 │
